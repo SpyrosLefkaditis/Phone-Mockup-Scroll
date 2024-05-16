@@ -31,7 +31,7 @@ git clone https://github.com/SpyrosLefkaditis/Phone-Mockup-Scroll.git
 
 ## Author
 
-[SpyrosLefkaditis](https://github.com/SpyrosLefkaditis)
+[SpyrosLefkaditis](https://github.com/SpyrosLefkaditis) - 
 [GEROGIANNIS](https://github.com/GEROGIANNIS)
 
 ## Contributing
