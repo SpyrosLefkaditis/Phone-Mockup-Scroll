@@ -12,21 +12,26 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            border-radius:50px;
             background-color: #f0f0f0;
         }
 
         .phone-wrapper {
             position: relative;
-            width: 300px; /* Adjust the width of the phone wrapper as needed */
-            height: 500px; /* Adjust the height of the phone wrapper */
+            width: 350px; /* Adjust the width of the phone wrapper as needed */
+            height: 770px; /* Adjust the height of the phone wrapper */
             overflow: hidden;
+            border-radius:50px;
         }
 
         .phone {
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 300px; /* Adjust the width of the phone mockup as needed */
-            z-index: 1; /* Ensure the mockup image stays above other content */
+            height: 100%;
+            z-index: 1;
+            border-radius:50px;
         }
 
         .background-image {
@@ -35,26 +40,27 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-repeat: no-repeat;
-            z-index: 0; /* Ensure the background image stays behind other content */
+            z-index: 0;
+            border-radius:50px;
+
         }
 
         .scrolling-content {
             width: 100%;
             height: 2000px; /* Adjust the height according to your image height */
             overflow: hidden; /* Hide overflow to prevent scrollbars */
+            border-radius:50px;
         }
 
         .scrolling-content img {
-            display: block;
             width: 100%;
+            border-radius:50px;
         }
     </style>
 </head>
 <body>
     <div class="phone-wrapper">
-        <img src="images/phone-mockup.png" alt="Phone Mockup" class="phone">
+        <img src="images/phone-mockup.png" alt="Phone Mockup" class="phone"> <!-- Phone mockup image -->
         <div class="background-image"></div> <!-- Background image div -->
         <div class="scrolling-content" id="scrollingContent">
             <img src="images/large-vertical-image.jpg" alt="Scrolling Image" id="largeImage">
@@ -63,33 +69,50 @@
     </div>
 
     <script>
-        window.onload = function() {
-            // Get the scrolling content element
-            var scrollingContent = document.getElementById('scrollingContent');
-            // Get the background image element
-            var backgroundImage = document.querySelector('.background-image');
-            // Get the large image element
-            var largeImage = document.getElementById('largeImage');
+    window.onload = function() {
+        // Get the scrolling content element
+        var scrollingContent = document.getElementById('scrollingContent');
+        // Get the background image element
+        var backgroundImage = document.querySelector('.background-image');
+        // Get the large image element
+        var largeImage = document.getElementById('largeImage');
 
-            // Function to scroll the image and adjust background position
-            function scrollImage() {
+        // Variable to keep track of scroll direction
+        var scrollDirection = 'down'; // Initial direction
+
+        // Function to scroll the image and adjust background position
+        function scrollImage() {
+            // Check scroll direction
+            if (scrollDirection === 'down') {
                 // Increment the scroll position
                 scrollingContent.scrollTop += 1;
-
-                // Update background position based on scroll position
-                var scrollPercentage = scrollingContent.scrollTop / (largeImage.offsetHeight - scrollingContent.offsetHeight);
-                var backgroundPosition = "0 " + (scrollPercentage * 100) + "%";
-                backgroundImage.style.backgroundPosition = backgroundPosition;
-
-                // If reached the end, reset the scroll position
+                // Check if reached the end
                 if (scrollingContent.scrollTop >= (largeImage.offsetHeight - scrollingContent.offsetHeight)) {
-                    scrollingContent.scrollTop = 0;
+                    // Change direction to up
+                    scrollDirection = 'up';
+                }
+            } else {
+                // Decrement the scroll position
+                scrollingContent.scrollTop -= 1;
+                // Check if reached the top
+                if (scrollingContent.scrollTop <= 0) {
+                    // Change direction to down
+                    scrollDirection = 'down';
                 }
             }
 
-            // Set an interval to call the scrollImage function repeatedly
-            setInterval(scrollImage, 1); // Adjust the interval as needed (smaller values for faster scrolling)
-        };
-    </script>
+            // Update background position based on scroll position
+            var scrollPercentage = scrollingContent.scrollTop / (largeImage.offsetHeight - scrollingContent.offsetHeight);
+            var backgroundPosition = "0 " + (scrollPercentage * 100) + "%";
+            backgroundImage.style.backgroundPosition = backgroundPosition;
+        }
+
+        // Set an interval to call the scrollImage function repeatedly
+        setInterval(scrollImage, 1); // Adjust the interval as needed (smaller values for faster scrolling)
+    };
+</script>
+
+
+
 </body>
 </html>
