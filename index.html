@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Phone Image</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .phone-wrapper {
+            position: relative;
+            width: 300px; /* Adjust the width of the phone wrapper as needed */
+        }
+
+        .phone {
+            width: 100%;
+            max-width: 300px; /* Adjust the width of the phone mockup as needed */
+        }
+
+        .scrolling-content {
+            position: absolute;
+            top: 40px; /* Adjust the top position of the scrolling content */
+            left: 10px; /* Adjust the left position of the scrolling content */
+            width: calc(100% - 20px); /* Adjust the width of the scrolling content */
+            height: 400px; /* Adjust the height of the scrolling content */
+            overflow-y: auto;
+            padding-right: 5px; /* Add padding to prevent horizontal scrollbar */
+        }
+
+        .scrolling-content img {
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-wrapper">
+        <img src="phone-mockup.png" alt="Phone Mockup" class="phone">
+        <div class="scrolling-content">
+            <img src="scrolling-image.jpg" alt="Scrolling Image">
+            <!-- Add more content here if needed -->
+        </div>
+    </div>
+</body>
+</html>
