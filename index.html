@@ -18,6 +18,7 @@
         .phone-wrapper {
             position: relative;
             width: 300px; /* Adjust the width of the phone wrapper as needed */
+            overflow: hidden;
         }
 
         .phone {
@@ -26,28 +27,50 @@
         }
 
         .scrolling-content {
-            position: absolute;
-            top: 40px; /* Adjust the top position of the scrolling content */
-            left: 10px; /* Adjust the left position of the scrolling content */
-            width: calc(100% - 20px); /* Adjust the width of the scrolling content */
+            width: 2000px; /* Adjust the width according to your image width */
             height: 400px; /* Adjust the height of the scrolling content */
-            overflow-y: auto;
-            padding-right: 5px; /* Add padding to prevent horizontal scrollbar */
+            white-space: nowrap; /* Prevent line breaks */
         }
 
         .scrolling-content img {
-            display: block;
-            width: 100%;
+            display: inline-block;
+            height: 100%;
+            /* If your image width is larger than the viewport width, adjust the width accordingly */
+            width: auto;
+            max-width: 100%; 
         }
     </style>
 </head>
 <body>
     <div class="phone-wrapper">
-        <img src="https://via.placeholder.com/300" alt="Phone Mockup" class="phone"> <!-- Sample phone mockup image URL -->
-        <div class="scrolling-content">
-            <img src="https://via.placeholder.com/300" alt="Scrolling Image"> <!-- Sample scrolling image URL -->
+        <img src="phone-mockup.png" alt="Phone Mockup" class="phone">
+        <div class="scrolling-content" id="scrollingContent">
+            <img src="large-horizontal-image.jpg" alt="Scrolling Image" id="largeImage">
             <!-- Add more content here if needed -->
         </div>
     </div>
+
+    <script>
+        window.onload = function() {
+            // Get the scrolling content element
+            var scrollingContent = document.getElementById('scrollingContent');
+            // Get the large image element
+            var largeImage = document.getElementById('largeImage');
+
+            // Function to scroll the image
+            function scrollImage() {
+                // Increment the scroll position
+                scrollingContent.scrollLeft += 1;
+
+                // If reached the end, reset the scroll position
+                if (scrollingContent.scrollLeft >= (largeImage.offsetWidth - scrollingContent.offsetWidth)) {
+                    scrollingContent.scrollLeft = 0;
+                }
+            }
+
+            // Set an interval to call the scrollImage function repeatedly
+            setInterval(scrollImage, 30); // Adjust the interval as needed (smaller values for faster scrolling)
+        };
+    </script>
 </body>
 </html>
