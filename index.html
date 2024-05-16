@@ -23,8 +23,10 @@
         }
 
         .phone {
+            position: relative;
             width: 100%;
             max-width: 300px; /* Adjust the width of the phone mockup as needed */
+            z-index: 1; /* Ensure the mockup image stays above other content */
         }
 
         .background-image {
@@ -33,10 +35,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('background-image.jpg'); /* Replace 'background-image.jpg' with your image URL */
             background-size: cover;
             background-repeat: no-repeat;
-            z-index: -1; /* Ensure the background image stays behind other content */
+            z-index: 0; /* Ensure the background image stays behind other content */
         }
 
         .scrolling-content {
@@ -53,10 +54,10 @@
 </head>
 <body>
     <div class="phone-wrapper">
-        <img src="phone-mockup.png" alt="Phone Mockup" class="phone">
+        <img src="images/phone-mockup.png" alt="Phone Mockup" class="phone">
         <div class="background-image"></div> <!-- Background image div -->
         <div class="scrolling-content" id="scrollingContent">
-            <img src="large-vertical-image.jpg" alt="Scrolling Image" id="largeImage">
+            <img src="images/large-vertical-image.jpg" alt="Scrolling Image" id="largeImage">
             <!-- Add more content here if needed -->
         </div>
     </div>
@@ -87,7 +88,7 @@
             }
 
             // Set an interval to call the scrollImage function repeatedly
-            setInterval(scrollImage, 30); // Adjust the interval as needed (smaller values for faster scrolling)
+            setInterval(scrollImage, 1); // Adjust the interval as needed (smaller values for faster scrolling)
         };
     </script>
 </body>
